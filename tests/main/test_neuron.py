@@ -6,15 +6,11 @@ import random
 class TestNeuron(unittest.TestCase):
 
     def test_weights_propagation(self):
-        weights = []
-
-        for i in range(100):
-            r = random.randint(0, 100)
-            weights.append(r)
-
+        weights = TestNeuron.generate_one_array(100)
         neuron = n.Neuron(weights, None)
+        neuron_weights = neuron.get_weights()
 
-        self.assertEqual(weights, neuron.get_weights())
+        self.assertEqual(weights, neuron_weights)
 
     def test_compute_zero_output(self):
         input = TestNeuron.generate_one_and_minus_one_array(100)
