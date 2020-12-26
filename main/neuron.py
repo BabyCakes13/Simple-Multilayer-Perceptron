@@ -11,6 +11,9 @@ class Neuron:
 
     def compute(self, input):
         # insert the input for the bias
+        if len(input) != len(self.__weights):
+            raise Exception("The number of input is different than the number of weights in {}".format(self))
+
         sum = 0
         for i, w in zip(input, self.__weights):
             sum += i * w
