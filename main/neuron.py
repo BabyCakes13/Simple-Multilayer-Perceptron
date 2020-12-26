@@ -28,7 +28,17 @@ class Neuron:
 
         return output
 
-    def get_output_derivative(self):
+    def adjust(self, learning_rate, input_neurons_list):
+        adjusted_weights = []
+
+        for weight, inl in zip(self.__weights, input_neurons_list):
+            adjusted_weight = weight + learning_rate * self.__delta * inl.get_output()
+            adjusted_weights.append(adjusted_weight)
+
+        self.__weights = adjusted_weights
+        self.__bias = self.__bias + learning_rate * self.__delta
+
+    def get_derived_output(self):
         result = self.__activation_function_derivative(self.__output)
         return result
 
@@ -40,6 +50,9 @@ class Neuron:
 
     def get_delta(self):
         return self.__delta
+
+    def get_bias(self):
+        return self.__bias
 
     def get_weight(self, index):
         try:

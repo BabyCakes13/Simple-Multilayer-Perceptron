@@ -62,13 +62,37 @@ class TestNeuron(unittest.TestCase):
 
         neuron.set_output(10)
         expected_output = 1
-        output = neuron.get_output_derivative()
+        output = neuron.get_derived_output()
         self.assertEqual(expected_output, output)
 
         neuron.set_output(-10)
         expected_output = 0
-        output = neuron.get_output_derivative()
+        output = neuron.get_derived_output()
         self.assertEqual(expected_output, output)
 
         neuron.set_output(0)
-        self.assertRaises(Exception, neuron.get_output_derivative)
+        self.assertRaises(Exception, neuron.get_derived_output)
+
+    def test_adjust(self):
+        neurons_count = 5
+        learning_rate = 1
+        bias = 1
+        delta = 1
+        input_neurons_list = []
+
+        for i in range(neurons_count):
+            neuron = n.Neuron([1], None, None)
+            neuron.set_output(1)
+
+            input_neurons_list.append(neuron)
+
+        weights = utils.generate_one_neuron_weights_with_bias(neurons_count, bias)
+        test_neuron = n.Neuron(weights, None, None)
+        test_neuron.set_delta(delta)
+
+        test_neuron.adjust(learning_rate, input_neurons_list)
+
+        for weight in test_neuron.get_weights():
+            self.assertEqual(2, weight)
+
+        self.assertEqual(2, test_neuron.get_bias())
