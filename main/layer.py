@@ -8,11 +8,11 @@ class Layer:
 
         self.__neurons = self.generate_neurons()
 
-    def compute_output(self, input):
+    def forward_propagate(self, input):
         output = []
 
         for n in self.__neurons:
-            output.append(n.compute(input))
+            output.append(n.forward_propagate(input))
 
         return output
 

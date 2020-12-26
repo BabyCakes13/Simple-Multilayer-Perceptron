@@ -7,7 +7,7 @@ import unittest
 
 class TestNetwork(unittest.TestCase):
 
-    def test_one_compute_output(self):
+    def test_one_forward_propagate(self):
         input = utils.generate_array(2)
         network_layout = [3, 2]
         bias = 1
@@ -21,7 +21,7 @@ class TestNetwork(unittest.TestCase):
         network = n.Network(weights=network_weights,
                             activation_functions=network_activation_functions)
 
-        outputs = network.compute_output(input)
+        outputs = network.forward_propagate(input)
 
         input_hidden_network_laout = network_layout
         input_hidden_network_laout.insert(0, len(input))

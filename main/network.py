@@ -20,11 +20,11 @@ class Network:
 
         return layers
 
-    def compute_output(self, input):
+    def forward_propagate(self, input):
         outputs = []
 
         for layer in self.__layers:
-            outputs = layer.compute_output(input)
+            outputs = layer.forward_propagate(input)
             input = outputs
 
         return outputs

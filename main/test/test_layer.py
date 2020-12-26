@@ -21,7 +21,7 @@ class TestLayer(unittest.TestCase):
 
             layer = l.Layer(weights, activation_functions)
 
-            layer_output = layer.compute_output(inputs)
+            layer_output = layer.forward_propagate(inputs)
             expected_output = [wc + bias] * nc
 
             self.assertEqual(expected_output, layer_output)

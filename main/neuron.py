@@ -9,7 +9,7 @@ class Neuron:
 
         self.__activation_function = activation_function
 
-    def compute(self, input):
+    def forward_propagate(self, input):
         # insert the input for the bias
         if len(input) != len(self.__weights):
             raise Exception("The number of input is different than the number of weights in {}".format(self))

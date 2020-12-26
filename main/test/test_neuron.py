@@ -22,7 +22,7 @@ class TestNeuron(unittest.TestCase):
         weights = utils.generate_one_neuron_weights_with_bias(100, bias)
 
         neuron = n.Neuron(weights, utils.activation_function)
-        output = neuron.compute(input)
+        output = neuron.forward_propagate(input)
 
         self.assertEqual(0 + bias, output)
 
@@ -32,7 +32,7 @@ class TestNeuron(unittest.TestCase):
         weights = utils.generate_one_neuron_weights_with_bias(100, bias)
 
         neuron = n.Neuron(weights, utils.activation_function)
-        output = neuron.compute(input)
+        output = neuron.forward_propagate(input)
 
         self.assertEqual(100 + bias, output)
 
@@ -42,7 +42,7 @@ class TestNeuron(unittest.TestCase):
 
         neuron = n.Neuron(weights, utils.activation_function)
 
-        self.assertRaises(Exception, neuron.compute, args=[input])
+        self.assertRaises(Exception, neuron.forward_propagate, args=[input])
 
     def test_compute_random_float_inputs(self):
         bias = 1
@@ -52,9 +52,9 @@ class TestNeuron(unittest.TestCase):
         print(input)
 
         neuron = n.Neuron(weights, utils.activation_function)
-        output = neuron.compute(input)
+        output = neuron.forward_propagate(input)
 
         # added huge delta because we want to test if the algorithm works with floats,
         # not how uniform the distribution is (in which case we'd want the error to be
-        # as little as possible) 
+        # as little as possible)
         self.assertAlmostEqual(0, output, delta=50)
