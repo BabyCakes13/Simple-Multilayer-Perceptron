@@ -1,7 +1,6 @@
 
 def generate_array(n, number=lambda y:1):
     array =  [number(x) for x in range(n)]
-    print (array)
     return array
 
 
@@ -40,6 +39,14 @@ def generate_one_network_weights(input_count, neuron_count_per_layer_list, bias)
 def activation_function(x):
     return max(0, x)
 
+
+def activation_function_derivative(x):
+    if x > 0:
+        return 1
+    elif x < 0:
+        return 0
+    else:
+        raise Exception("The derivative expects a 0 division. Cannot derivate function in 0.")
 
 def generate_layer_activation_functions(neuron_count):
     activation_functions = [activation_function] * neuron_count

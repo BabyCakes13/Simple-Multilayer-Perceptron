@@ -49,8 +49,6 @@ class TestNeuron(unittest.TestCase):
         input = utils.generate_array(100, lambda y: random.random() * 2 - 1)
         weights = utils.generate_one_neuron_weights_with_bias(100, bias)
 
-        print(input)
-
         neuron = n.Neuron(weights, utils.activation_function)
         output = neuron.forward_propagate(input)
 
@@ -58,3 +56,19 @@ class TestNeuron(unittest.TestCase):
         # not how uniform the distribution is (in which case we'd want the error to be
         # as little as possible)
         self.assertAlmostEqual(0, output, delta=50)
+
+    def test_get_output_derivative(self):
+        neuron = n.Neuron([1], utils.activation_function, utils.activation_function_derivative)
+
+        neuron.set_output(10)
+        expected_output = 1
+        output = neuron.get_output_derivative()
+        self.assertEqual(expected_output, output)
+
+        neuron.set_output(-10)
+        expected_output = 0
+        output = neuron.get_output_derivative()
+        self.assertEqual(expected_output, output)
+
+        neuron.set_output(0)
+        self.assertRaises(Exception, neuron.get_output_derivative)
