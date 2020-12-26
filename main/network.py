@@ -28,3 +28,10 @@ class Network:
             input = outputs
 
         return outputs
+
+    def adjust(self, learning_rate, inputs):
+        first_layer = self.__layers[0]
+        first_layer.adjust(learning_rate, inputs)
+
+        for layer in self.__layers[1:]:
+            pass
