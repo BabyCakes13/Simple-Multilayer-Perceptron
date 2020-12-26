@@ -59,3 +59,20 @@ class TestLayer(unittest.TestCase):
 
         for neuron in layer.get_neurons():
             self.assertEqual(3, neuron.get_delta())
+
+    def test_adjust(self):
+        before_layer = l.Layer(weights=utils.generate_one_layer_weights(3, 3, 1),
+                        activation_functions=utils.generate_layer_activation_functions(3),
+                        activation_function_derivatives=utils.generate_layer_activation_function_derivatives(3))
+
+        for neuron in before_layer.get_neurons():
+            neuron.set_output(1)
+
+        current_layer = l.Layer(weights=utils.generate_one_layer_weights(1, 3, 1),
+                        activation_functions=utils.generate_layer_activation_functions(3),
+                        activation_function_derivatives=utils.generate_layer_activation_function_derivatives(3))
+
+        for neuron in current_layer.get_neurons():
+            neuron.set_delta(1)
+
+        current_layer.adjust(1, before_layer)

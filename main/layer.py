@@ -20,7 +20,7 @@ class Layer:
     def backward_propagate_output(self, expected_outputs):
         for neuron, eo in zip(self.__neurons, expected_outputs):
             error = eo - neuron.get_output()
-            delta = error * neuron.get_output_derivative()
+            delta = error * neuron.get_derived_output()
             neuron.set_delta(delta)
 
     def backward_propagate_hidden(self, before_layer):
@@ -32,8 +32,13 @@ class Layer:
                 bfn_error = bfn.get_delta() * bfn.get_weight(index=i)
                 error += bfn_error
 
-            delta = error * neuron.get_output_derivative()
+            delta = error * neuron.get_derived_output()
+
             neuron.set_delta(delta)
+
+    def adjust(self, learning_rate, input_layer):
+        for neuron in self.__neurons:
+            neuron.adjust(learning_rate, input_layer.get_neurons())
 
     def generate_neurons(self):
         neurons = []
