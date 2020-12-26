@@ -22,3 +22,18 @@ class TestLayer(unittest.TestCase):
             expected_output = [wc + bias] * nc
 
             self.assertEqual(expected_output, layer_output)
+
+    def test_backward_propagate_output(self):
+        layer = l.Layer(weights=utils.generate_one_layer_weights(3, 3, 314),
+                        activation_functions=range(3),
+                        activation_function_derivatives=utils.generate_layer_activation_function_derivatives(3))
+        actual_outputs = []
+
+        for neuron in layer.get_neurons():
+            neuron.set_output(1)
+            actual_outputs.append(2)
+
+        layer.backward_propagate_output(actual_outputs)
+
+        for neuron in layer.get_neurons():
+            self.assertEqual(1, neuron.get_delta())

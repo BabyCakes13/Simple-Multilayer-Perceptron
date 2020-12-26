@@ -5,6 +5,7 @@ class Layer:
     def __init__(self, weights, activation_functions, activation_function_derivatives=None):
         self.__weights = weights
         self.__activation_functions = activation_functions
+        self.__activation_function_derivatives = activation_function_derivatives
 
         self.__neurons = self.generate_neurons()
 
@@ -38,11 +39,18 @@ class Layer:
         neurons = []
         size = len(self.__weights)
 
-        for w, a in zip(self.__weights, self.__activation_functions):
-            new_neuron = n.Neuron(w, a)
+        # for forward propagation only we do not need the derivatives.
+        if self.__activation_function_derivatives is None:
+            self.__activation_function_derivatives = [None] * len(self.__activation_functions)
+
+        for w, a, ad in zip(self.__weights, self.__activation_functions, self.__activation_function_derivatives):
+            new_neuron = n.Neuron(w, a, ad)
             neurons.append(new_neuron)
 
         return neurons
 
     def get_neurons_count(self):
         return len(self.__neurons)
+
+    def get_neurons(self):
+        return self.__neurons

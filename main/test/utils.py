@@ -48,6 +48,12 @@ def activation_function_derivative(x):
     else:
         raise Exception("The derivative expects a 0 division. Cannot derivate function in 0.")
 
+
+def generate_layer_activation_function_derivatives(neuron_count):
+    activation_function_derivatives = [activation_function_derivative] * neuron_count
+    return activation_function_derivatives
+
+
 def generate_layer_activation_functions(neuron_count):
     activation_functions = [activation_function] * neuron_count
     return activation_functions
