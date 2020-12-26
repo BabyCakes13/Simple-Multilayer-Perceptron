@@ -45,14 +45,16 @@ class TestNeuron(unittest.TestCase):
         self.assertRaises(Exception, neuron.compute, args=[input])
 
     def test_compute_random_float_inputs(self):
-        pass
-        # bias = 1
-        # input = utils.generate_array(100, lambda y: random.random() * 2 - 1)
-        # weights = utils.generate_one_neuron_weights_with_bias(100, bias)
-        #
-        # print(input)
-        #
-        # neuron = n.Neuron(weights, utils.activation_function)
-        # output = neuron.compute(input)
-        #
-        # self.assertAlmostEqual(0, output, delta=10)
+        bias = 1
+        input = utils.generate_array(100, lambda y: random.random() * 2 - 1)
+        weights = utils.generate_one_neuron_weights_with_bias(100, bias)
+
+        print(input)
+
+        neuron = n.Neuron(weights, utils.activation_function)
+        output = neuron.compute(input)
+
+        # added huge delta because we want to test if the algorithm works with floats,
+        # not how uniform the distribution is (in which case we'd want the error to be
+        # as little as possible) 
+        self.assertAlmostEqual(0, output, delta=50)
