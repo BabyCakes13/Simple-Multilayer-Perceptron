@@ -42,7 +42,11 @@ class Neuron:
         return self.__delta
 
     def get_weight(self, index):
-        return self.__weights[index]
+        try:
+            print("Getting weight at {}".format(index))
+            return self.__weights[index]
+        except IndexError as e:
+            raise Exception("The requested weight at index {} cannot be retrieved. Index does not exist.".format(index))
 
     def set_output(self, output):
         self.__output = output

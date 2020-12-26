@@ -37,3 +37,25 @@ class TestLayer(unittest.TestCase):
 
         for neuron in layer.get_neurons():
             self.assertEqual(1, neuron.get_delta())
+
+    def test_backward_propagate_hidden(self):
+        # generate the before layer which will be asked its errors
+        before_layer = l.Layer(weights=utils.generate_one_layer_weights(3, 3, 1),
+                        activation_functions=utils.generate_layer_activation_functions(3),
+                        activation_function_derivatives=utils.generate_layer_activation_function_derivatives(3))
+
+        for neuron in before_layer.get_neurons():
+            neuron.set_delta(1)
+
+        # generate the current hidden layer we are working with
+        layer = l.Layer(weights=utils.generate_one_layer_weights(1, 3, 1),
+                        activation_functions=utils.generate_layer_activation_functions(3),
+                        activation_function_derivatives=utils.generate_layer_activation_function_derivatives(3))
+
+        for neuron in layer.get_neurons():
+            neuron.set_output(1)
+
+        layer.backward_propagate_hidden(before_layer)\
+
+        for neuron in layer.get_neurons():
+            self.assertEqual(3, neuron.get_delta())
