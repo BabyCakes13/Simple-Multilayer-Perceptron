@@ -1,6 +1,3 @@
-import sys
-print(sys.path)
-
 from main import layer as l
 from . import utils
 
