@@ -1,11 +1,12 @@
 
-def generate_one_array(n):
-    array = [1] * n
+def generate_array(n, number=lambda y:1):
+    array =  [number(x) for x in range(n)]
+    print (array)
     return array
 
 
 def generate_one_matrix(weights_count, neuron_count):
-    matrix = [generate_one_array(weights_count)] * neuron_count
+    matrix = [generate_array(weights_count)] * neuron_count
     return matrix
 
 
@@ -25,11 +26,12 @@ def generate_one_layer_weights(weights_per_neuron_count, neuron_count, bias):
     return layer_weights
 
 
-def generate_one_network_weights(input_count, neuron_count_per_layer_list):
+def generate_one_network_weights(input_count, neuron_count_per_layer_list, bias):
     network_weights = []
     for nc in neuron_count_per_layer_list:
         network_weights.append(generate_one_layer_weights(weights_per_neuron_count=input_count,
-                                                                      neuron_count=nc))
+                                                          neuron_count=nc,
+                                                          bias=bias))
         input_count = nc
 
     return network_weights

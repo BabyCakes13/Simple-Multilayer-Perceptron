@@ -1,3 +1,6 @@
+import sys
+print(sys.path)
+
 from main import layer as l
 from . import utils
 
@@ -12,7 +15,7 @@ class TestLayer(unittest.TestCase):
         bias = 1
 
         for wc, nc in zip(weights_count, neuron_count):
-            inputs = utils.generate_one_array(wc)
+            inputs = utils.generate_array(wc)
             weights = utils.generate_one_layer_weights(wc, nc, bias)
             activation_functions = [utils.activation_function] * nc
 

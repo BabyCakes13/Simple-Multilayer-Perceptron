@@ -28,7 +28,7 @@ class TestNeuron(unittest.TestCase):
 
     def test_compute_size_output(self):
         bias = 1
-        input = utils.generate_one_array(100)
+        input = utils.generate_array(100)
         weights = utils.generate_one_neuron_weights_with_bias(100, bias)
 
         neuron = n.Neuron(weights, utils.activation_function)
@@ -43,3 +43,16 @@ class TestNeuron(unittest.TestCase):
         neuron = n.Neuron(weights, utils.activation_function)
 
         self.assertRaises(Exception, neuron.compute, args=[input])
+
+    def test_compute_random_float_inputs(self):
+        pass
+        # bias = 1
+        # input = utils.generate_array(100, lambda y: random.random() * 2 - 1)
+        # weights = utils.generate_one_neuron_weights_with_bias(100, bias)
+        #
+        # print(input)
+        #
+        # neuron = n.Neuron(weights, utils.activation_function)
+        # output = neuron.compute(input)
+        #
+        # self.assertAlmostEqual(0, output, delta=10)
