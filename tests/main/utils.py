@@ -20,8 +20,8 @@ def generate_one_neuron_weights_with_bias(weights_per_neuron_count, bias):
     return neuron_weights
 
 
-def generate_one_layer_weights(weights_per_neuron_count, neuron_count):
-    layer_weights = [generate_one_neuron_weights_with_bias(weights_per_neuron_count, bias=1)] * neuron_count
+def generate_one_layer_weights(weights_per_neuron_count, neuron_count, bias):
+    layer_weights = [generate_one_neuron_weights_with_bias(weights_per_neuron_count, bias)] * neuron_count
     return layer_weights
 
 
