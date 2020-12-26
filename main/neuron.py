@@ -12,9 +12,6 @@ class Neuron:
         self.__output = None
         self.__delta = None
 
-    def set_delta(delta):
-        self.__delta = delta
-
     def forward_propagate(self, input):
         # insert the input for the bias
         if len(input) != len(self.__weights):
@@ -41,7 +38,7 @@ class Neuron:
     def get_output(self):
         return self.__output
 
-    def get_dekta(self):
+    def get_delta(self):
         return self.__delta
 
     def get_weight(self, index):
@@ -49,3 +46,6 @@ class Neuron:
 
     def set_output(self, output):
         self.__output = output
+
+    def set_delta(self, delta):
+        self.__delta = delta
