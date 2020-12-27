@@ -27,10 +27,6 @@ class Network:
     def get_layers(self):
         return self.__layers
 
-    def pretty_print_network(self):
-        for layer in self.__layers:
-            print("Layer {} has {} neurons.".format(layer, layer.get_neurons_count()))
-
     def forward_propagate(self, input):
         outputs = []
 
@@ -61,3 +57,6 @@ class Network:
         for layer in self.__layers:
             layer.adjust(learning_rate, input_layer)
             input_layer = layer
+    def display(self):
+        for layer in self.__layers:
+            layer.display()

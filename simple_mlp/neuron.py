@@ -46,6 +46,9 @@ class Neuron:
         result = self.__activation_function_derivative(self.__output)
         return result
 
+    def display(self):
+        print("Neuron {} has bias {} and weights: {}.".format(self, self.__bias, self.__weights))
+
     def get_weights(self):
         return self.__weights
 

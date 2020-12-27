@@ -54,6 +54,11 @@ class Layer:
 
         return neurons
 
+    def display(self):
+        print("Layer {} has {} neurons.".format(self, len(self.__neurons)))
+        for neuron in self.__neurons:
+            neuron.display()
+
     def get_neurons_count(self):
         return len(self.__neurons)
 

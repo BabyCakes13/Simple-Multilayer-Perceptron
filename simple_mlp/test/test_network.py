@@ -48,7 +48,7 @@ class TestNetwork(unittest.TestCase):
             for neuron in layer.get_neurons():
                 neuron.set_output(actual_output)
 
-        network.pretty_print_network()
+        network.display()
 
         network.backwards_propagation(expected_output)
 
