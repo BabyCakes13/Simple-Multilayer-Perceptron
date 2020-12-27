@@ -60,7 +60,6 @@ class Neuron:
 
     def get_weight(self, index):
         try:
-            print("Getting weight at {}".format(index))
             return self.__weights[index]
         except IndexError as e:
             raise Exception("The requested weight at index {} cannot be retrieved. Index does not exist.".format(index))
