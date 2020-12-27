@@ -20,6 +20,9 @@ class Network:
 
         return layers
 
+    def get_layers(self):
+        return self.__layers
+
     def forward_propagate(self, input):
         outputs = []
 
