@@ -61,16 +61,25 @@ class TestLayer(unittest.TestCase):
             self.assertEqual(3, neuron.get_delta())
 
     def test_adjust(self):
-        before_layer = l.Layer(weights=utils.generate_one_layer_weights(3, 3, 1),
-                        activation_functions=utils.generate_layer_activation_functions(3),
-                        activation_function_derivatives=utils.generate_layer_activation_function_derivatives(3))
+        weights_per_neuron_count = 2
+        before_neuron_count = 3
+        current_neuron_count = 5
+        bias = 1
+
+        before_layer = l.Layer(weights=utils.generate_one_layer_weights(weights_per_neuron_count,
+                                                                        before_neuron_count,
+                                                                        bias),
+                        activation_functions=utils.generate_layer_activation_functions(before_neuron_count),
+                        activation_function_derivatives=utils.generate_layer_activation_function_derivatives(before_neuron_count))
 
         for neuron in before_layer.get_neurons():
             neuron.set_output(1)
 
-        current_layer = l.Layer(weights=utils.generate_one_layer_weights(1, 3, 1),
-                        activation_functions=utils.generate_layer_activation_functions(3),
-                        activation_function_derivatives=utils.generate_layer_activation_function_derivatives(3))
+        current_layer = l.Layer(weights=utils.generate_one_layer_weights(before_neuron_count,
+                                                                         current_neuron_count,
+                                                                         bias),
+                        activation_functions=utils.generate_layer_activation_functions(current_neuron_count),
+                        activation_function_derivatives=utils.generate_layer_activation_function_derivatives(current_neuron_count))
 
         for neuron in current_layer.get_neurons():
             neuron.set_delta(1)
