@@ -32,9 +32,13 @@ class Network:
 
         return outputs
 
-    def adjust(self, learning_rate, inputs):
-        first_layer = self.__layers[0]
-        first_layer.adjust(learning_rate, inputs)
+    def adjust(self, learning_rate, input):
+        input_neurons_weights = [[1]] * len(input)
+        input_layer = l.Layer(input_neurons_weights, [None] * len(input), None)
 
-        for layer in self.__layers[1:]:
-            pass
+        for n, i in zip(input_layer.get_neurons(), input):
+            n.set_output(i)
+
+        for layer in self.__layers:
+            layer.adjust(learning_rate, input_layer)
+            input_layer = layer
