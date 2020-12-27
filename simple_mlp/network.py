@@ -57,6 +57,11 @@ class Network:
         for layer in self.__layers:
             layer.adjust(learning_rate, input_layer)
             input_layer = layer
+
+    def squared_mean_error(self, expected_output):
+        output_layer = self.__layers[-1]
+        return output_layer.squared_mean_error(expected_output)
+
     def display(self):
         for layer in self.__layers:
             layer.display()

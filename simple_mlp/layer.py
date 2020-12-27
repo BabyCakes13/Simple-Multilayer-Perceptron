@@ -40,6 +40,16 @@ class Layer:
         for neuron in self.__neurons:
             neuron.adjust(learning_rate, input_layer.get_neurons())
 
+    def squared_mean_error(self, expected_output):
+        squared_mean_error = 0
+
+        for neuron, eo in zip(self.__neurons, expected_output):
+            error = eo - neuron.get_output()
+            squared_mean_error += error * error
+
+        squared_mean_error = squared_mean_error / len(self.__neurons)
+        return squared_mean_error
+        
     def generate_neurons(self):
         neurons = []
         size = len(self.__weights)
