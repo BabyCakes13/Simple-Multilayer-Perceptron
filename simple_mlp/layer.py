@@ -1,4 +1,4 @@
-from main import neuron as n
+from simple_mlp import neuron as n
 
 
 class Layer:
@@ -6,7 +6,7 @@ class Layer:
         self.__weights = weights
         self.__activation_functions = activation_functions
         self.__activation_function_derivatives = activation_function_derivatives
-
+        
         self.__neurons = self.generate_neurons()
 
     def forward_propagate(self, input):

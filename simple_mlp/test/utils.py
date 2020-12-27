@@ -68,6 +68,15 @@ def generate_network_activation_functions(network_layout):
     return netwrok_activation_functions
 
 
+def generate_network_activation_functions_derivatives(network_layout):
+    netwrok_activation_functions_derivatives = []
+
+    for neuron_count in network_layout:
+        netwrok_activation_functions_derivatives.append(generate_layer_activation_function_derivatives(neuron_count))
+
+    return netwrok_activation_functions_derivatives
+
+
 def generate_one_and_minus_one_array(size):
     array = [1, -1] * (size // 2)
     return array

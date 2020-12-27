@@ -1,4 +1,4 @@
-from main import layer as l
+from simple_mlp import layer as l
 from . import utils
 
 import unittest
@@ -55,7 +55,7 @@ class TestLayer(unittest.TestCase):
         for neuron in layer.get_neurons():
             neuron.set_output(1)
 
-        layer.backward_propagate_hidden(before_layer)\
+        layer.backward_propagate_hidden(before_layer)
 
         for neuron in layer.get_neurons():
             self.assertEqual(3, neuron.get_delta())

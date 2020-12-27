@@ -1,4 +1,4 @@
-from main import neuron as n
+from simple_mlp import neuron as n
 from . import utils
 
 import unittest
