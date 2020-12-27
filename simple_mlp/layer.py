@@ -52,11 +52,23 @@ class Layer:
         
     def generate_neurons(self):
         neurons = []
-        size = len(self.__weights)
+        neurons_count = len(self.__weights)
 
         # for forward propagation only we do not need the derivatives.
         if self.__activation_function_derivatives is None:
             self.__activation_function_derivatives = [None] * len(self.__activation_functions)
+
+        try:
+            iter(self.__activation_functions)
+        except TypeError:
+            print("The activation function passed to the layer is set as common to the neurons.")
+            self.__activation_functions = [self.__activation_functions] * neurons_count
+
+        try:
+            iter(self.__activation_function_derivatives)
+        except TypeError:
+            print("The activation function derivatives passed to the layer is set as common to the neurons.")
+            self.__activation_function_derivatives = [self.__activation_function_derivatives] * neurons_count
 
         for w, a, ad in zip(self.__weights, self.__activation_functions, self.__activation_function_derivatives):
             new_neuron = n.Neuron(w, a, ad)
