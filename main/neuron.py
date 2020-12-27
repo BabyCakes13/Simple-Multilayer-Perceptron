@@ -31,6 +31,10 @@ class Neuron:
     def adjust(self, learning_rate, input_neurons_list):
         adjusted_weights = []
 
+        if len(self.__weights) != len(input_neurons_list):
+            raise Exception("Weights and input neurons list are different {} vs {}."
+            "Cannot adjust weights.".format(self.__weights, input_neurons_list))
+
         for weight, inl in zip(self.__weights, input_neurons_list):
             adjusted_weight = weight + learning_rate * self.__delta * inl.get_output()
             adjusted_weights.append(adjusted_weight)
