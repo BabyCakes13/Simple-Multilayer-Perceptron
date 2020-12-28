@@ -58,11 +58,11 @@ class Layer:
         neurons = []
         neurons_count = len(self.__weights)
 
+        self.check_generate_neurons_possible(neurons_count)
+
         # for forward propagation only we do not need the derivatives.
         if self.__activation_function_derivatives is None:
             self.__activation_function_derivatives = [None] * len(self.__activation_functions)
-
-        self.check_generate_neurons_possible(neurons_count)
 
         for w, a, ad in zip(self.__weights, self.__activation_functions, self.__activation_function_derivatives):
             new_neuron = n.Neuron(w, a, ad)
