@@ -17,8 +17,15 @@ class Train:
 
         for combination in xor_input_combinations:
             self.__dataset[combination] = [functools.reduce(lambda x, y: x ^ y, combination)]
+            # self.__dataset[combination].append(1 - self.__dataset[combination][0])
 
         return self.__dataset
+
+    def set_network(self, network):
+        self.__network = network
+
+    def set_dataset(self, dataset):
+        self.__dataset = dataset
 
     def setup_network(self, input_count, network_layout, activation_functions, activation_functions_derivations):
         network_weights = self.generate_random_network_weights(input_count,
@@ -33,10 +40,13 @@ class Train:
 
         return self.__network
 
-    def chu_chu(self, learning_rate, acceptable_squared_mean_error):
+    def chu_chu(self, learning_rate, acceptable_squared_mean_error, max_epocs=None):
         all_squared_mean_errors = acceptable_squared_mean_error + 1
+
         iteration = 0
-        while all_squared_mean_errors > acceptable_squared_mean_error:
+        while (all_squared_mean_errors > acceptable_squared_mean_error
+            and ((max_epocs is None) or iteration < max_epocs)):
+
             all_squared_mean_errors = 0
 
             for input, output in self.__dataset.items():
@@ -47,12 +57,12 @@ class Train:
                 squared_mean_error = self.__network.squared_mean_error(output)
                 all_squared_mean_errors += squared_mean_error
 
-                if iteration % 10 == 0:
+                if iteration % 1 == 0:
                         print("Computed outputs and expected outputs are {} and {} for the following inputs: {}".format(computed_output, output, input))
 
             all_squared_mean_errors = all_squared_mean_errors / len(self.__dataset)
 
-            if iteration % 10 == 0:
+            if iteration % 1 == 0:
                 print("\nNetwork at iteration {} with all squared mean errors of {}.".format(iteration, all_squared_mean_errors))
                 self.__network.display()
 
