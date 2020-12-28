@@ -18,6 +18,10 @@ class Layer:
         return output
 
     def backward_propagate_output(self, expected_outputs):
+        if len(self.__neurons) != len(expected_outputs):
+            raise Exception("The number of neurons in the layer versus the expected outputs are different."
+            "Cannot backward Propagate.")
+
         for neuron, eo in zip(self.__neurons, expected_outputs):
             error = eo - neuron.get_output()
             delta = error * neuron.get_derived_output()
@@ -58,6 +62,15 @@ class Layer:
         if self.__activation_function_derivatives is None:
             self.__activation_function_derivatives = [None] * len(self.__activation_functions)
 
+        self.check_generate_neurons_possible(neurons_count)
+
+        for w, a, ad in zip(self.__weights, self.__activation_functions, self.__activation_function_derivatives):
+            new_neuron = n.Neuron(w, a, ad)
+            neurons.append(new_neuron)
+
+        return neurons
+
+    def check_generate_neurons_possible(self, neurons_count):
         try:
             iter(self.__activation_functions)
         except TypeError:
@@ -70,11 +83,9 @@ class Layer:
             print("The activation function derivatives passed to the layer is set as common to the neurons.")
             self.__activation_function_derivatives = [self.__activation_function_derivatives] * neurons_count
 
-        for w, a, ad in zip(self.__weights, self.__activation_functions, self.__activation_function_derivatives):
-            new_neuron = n.Neuron(w, a, ad)
-            neurons.append(new_neuron)
-
-        return neurons
+        # check that the values necessary for generating the neurons are of equal length.
+        if not all(len(lst) == neurons_count for lst in [self.__activation_function_derivatives, self.__activation_functions, self.__weights]):
+            raise Exception("Cannot generate neurons in layer. The number of weights, activation functions and its derivatives are different.")
 
     def display(self):
         print("Layer {} has {} neurons.".format(self, len(self.__neurons)))

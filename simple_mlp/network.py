@@ -15,6 +15,8 @@ class Network:
         if self.__activation_functions_derivatives is None:
             self.__activation_functions_derivatives = [None] * len(self.__activation_functions)
 
+        self.check_generate_layers_possible(len(self.__weights))
+
         for w, a, af in zip(self.__weights, self.__activation_functions, self.__activation_functions_derivatives):
             layer = l.Layer(w, a, af)
             layers.append(layer)
@@ -23,6 +25,11 @@ class Network:
             raise Exception("No layer has been created.")
 
         return layers
+
+    def check_generate_layers_possible(self, layers_count):
+        # check that the values necessary for generating the neurons are of equal length.
+        if not all(len(lst) == layers_count for lst in [self.__activation_functions_derivatives, self.__activation_functions, self.__weights]):
+            raise Exception("Cannot generate layers in network.. The number of weights, activation functions and its derivatives are different.")
 
     def get_layers(self):
         return self.__layers
@@ -47,6 +54,10 @@ class Network:
     def adjust(self, learning_rate, input):
         input_neurons_weights = [[1]] * len(input)
         input_layer = l.Layer(input_neurons_weights, [None] * len(input), None)
+        input_layer_neurons = input_layer.get_neurons()
+
+        if len(input_layer_neurons) != len(input):
+            raise Exception("Cannot adjust weights. The number of input layer neurons is different than the number of inputs.")
 
         for n, i in zip(input_layer.get_neurons(), input):
             n.set_output(i)
