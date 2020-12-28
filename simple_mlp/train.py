@@ -34,27 +34,34 @@ class Train:
         return self.__network
 
     def chu_chu(self, learning_rate, acceptable_squared_mean_error):
-        squared_mean_error = acceptable_squared_mean_error + 1
+        all_squared_mean_errors = acceptable_squared_mean_error + 1
+        iteration = 0
+        while all_squared_mean_errors > acceptable_squared_mean_error:
+            all_squared_mean_errors = 0
 
-        while True:
-            iteration = 0
             for input, output in self.__dataset.items():
-                self.__network.forward_propagate(input)
+                computed_output = self.__network.forward_propagate(input)
                 self.__network.backwards_propagation(output)
                 self.__network.adjust(learning_rate, input)
 
                 squared_mean_error = self.__network.squared_mean_error(output)
+                all_squared_mean_errors += squared_mean_error
 
-                print("\nNetwork at iteration {} with squared mean error of {}.".format(iteration, squared_mean_error))
+                if iteration % 10 == 0:
+                        print("Computed outputs and expected outputs are {} and {} for the following inputs: {}".format(computed_output, output, input))
+
+            all_squared_mean_errors = all_squared_mean_errors / len(self.__dataset)
+
+            if iteration % 10 == 0:
+                print("\nNetwork at iteration {} with all squared mean errors of {}.".format(iteration, all_squared_mean_errors))
                 self.__network.display()
 
-                if squared_mean_error <= acceptable_squared_mean_error:
-                    break
-                    
-                iteration += 1
+            iteration += 1
 
-            if squared_mean_error <= acceptable_squared_mean_error:
-                break
+    def check_chu_chu(self):
+        for input, output in self.__dataset.items():
+            outputs = self.__network.forward_propagate(input)
+            print("Outputs are {}".format(outputs))
 
     def display_network(self):
         self.__network.display()

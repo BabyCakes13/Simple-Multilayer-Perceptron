@@ -38,12 +38,9 @@ class Network:
 
     def backwards_propagation(self, expected_outputs):
         before_layer = self.__layers[-1]
-        print("Backpropagating last layer with {} neurons.".format(before_layer.get_neurons_count()))
         before_layer.backward_propagate_output(expected_outputs)
 
         for layer in reversed(self.__layers[:-1]):
-            print("Backpropagating layer with {} neurons.".format(layer.get_neurons_count()))
-
             layer.backward_propagate_hidden(before_layer)
             before_layer = layer
 

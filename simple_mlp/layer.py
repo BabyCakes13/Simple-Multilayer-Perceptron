@@ -6,7 +6,7 @@ class Layer:
         self.__weights = weights
         self.__activation_functions = activation_functions
         self.__activation_function_derivatives = activation_function_derivatives
-        
+
         self.__neurons = self.generate_neurons()
 
     def forward_propagate(self, input):
@@ -49,7 +49,7 @@ class Layer:
 
         squared_mean_error = squared_mean_error / len(self.__neurons)
         return squared_mean_error
-        
+
     def generate_neurons(self):
         neurons = []
         neurons_count = len(self.__weights)

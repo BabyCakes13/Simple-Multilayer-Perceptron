@@ -1,6 +1,8 @@
 from . import train as t
 from .test import utils
+import random
 
+random.seed(1)
 
 
 train = t.Train()
@@ -18,3 +20,5 @@ train.setup_network(input_count, network_layout, activation_functions, activatio
 train.display_network()
 
 train.chu_chu(0.0001, acceptable_squared_mean_error=0.1)
+
+train.check_chu_chu()
