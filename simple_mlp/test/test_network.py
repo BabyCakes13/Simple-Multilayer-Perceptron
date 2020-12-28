@@ -3,6 +3,7 @@ from . import utils
 
 from functools import reduce
 import unittest
+import math
 
 
 class TestNetwork(unittest.TestCase):
@@ -31,6 +32,30 @@ class TestNetwork(unittest.TestCase):
 
         self.assertEqual(expected_outputs, outputs)
 
+    def test_forward_propagate(self):
+        network_weights = [
+                    [
+                        [0.763774618976614, 0.13436424411240122, 0.8474337369372327]# one neuron
+                    ], # one hidden layer
+		            [
+                        [0.49543508709194095, 0.2550690257394217],
+                        [0.651592972722763, 0.4494910647887381]
+                    ]  # one output layer
+        ]
+
+        def sigmoid(x):
+            return 1 / (1 + math.exp(-x))
+
+        layer_count = len(network_weights)
+        activation_functions = [sigmoid] * layer_count
+
+        network = n.Network(network_weights, activation_functions, None)
+
+        fp_input = [1, 0]
+
+        output = network.forward_propagate(fp_input)
+
+        print(output)
 
     def test_backwards_propagate(self):
         input = utils.generate_array(2)
@@ -73,6 +98,57 @@ class TestNetwork(unittest.TestCase):
                 print("before sum deltas {} with neuron's delta {}".format(before_sum_deltas, neuron.get_delta()))
                 self.assertAlmostEqual(before_sum_deltas, neuron.get_delta())
             before_sum_deltas = currrent_sum_deltas
+
+    def test_backwards_propagate_2(self):
+        network_info = [
+                    [
+                        {'output': 0.7105668883115941, 'weights': [0.763774618976614, 0.13436424411240122, 0.8474337369372327]} # one neuron
+                    ], # one hidden layer
+		            [
+                        {'output': 0.6213859615555266, 'weights': [0.49543508709194095, 0.2550690257394217]},
+                        {'output': 0.6573693455986976, 'weights': [0.651592972722763, 0.4494910647887381]}
+                    ]  # one output layer
+        ]
+
+        network_outputs = [[0.7105668883115941],
+                        [0.6213859615555266, 0.6573693455986976]]
+
+        network_weights = [
+                    [
+                        [0.763774618976614, 0.13436424411240122, 0.8474337369372327]# one neuron
+                    ], # one hidden layer
+		            [
+                        [0.49543508709194095, 0.2550690257394217],
+                        [0.651592972722763, 0.4494910647887381]
+                    ]  # one output layer
+        ]
+
+        expected_outputs = [0, 1]
+
+        def sigmoid(x):
+          return 1 / (1 + math.exp(-x))
+
+        def sigmoid_derivative(sigmoud_output):
+            return sigmoud_output * (1 - sigmoud_output)
+
+        layer_count = len(network_weights)
+        activation_functions = [sigmoid] * layer_count
+        activation_functions_derivatives = [sigmoid_derivative] * layer_count
+
+        network = n.Network(network_weights, activation_functions, activation_functions_derivatives)
+
+        for layer, layer_outputs in zip(network.get_layers(), network_outputs):
+            for neuron, neuron_output in zip(layer.get_neurons(), layer_outputs):
+                neuron.set_output(neuron_output)
+
+        network.backwards_propagation(expected_outputs)
+
+        wanted_deltas = [[-0.0005348048046610517], [-0.14619064683582808, 0.0771723774346327]]
+
+        for layer, layer_deltas in zip(network.get_layers(), wanted_deltas):
+            print("\nLayer {}".format(layer))
+            for neuron, neuron_delta in zip(layer.get_neurons(), layer_deltas):
+                self.assertEqual(neuron.get_delta(), neuron_delta)
 
     def test_adjust(self):
         input = utils.generate_array(2)
