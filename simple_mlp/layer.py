@@ -124,7 +124,7 @@ class Layer:
         return neurons
 
     def prepare_neurons_generation(self, neurons_count) -> None:
-        """Check whether neurons generation is possible.
+        """Prepare the neurons generation for the current layer.
 
         The passed constructor parameters might be different in length, which
         means that they have not been correctly constructed. The weights,
