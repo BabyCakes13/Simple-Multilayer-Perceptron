@@ -5,7 +5,7 @@ from simple_mlp import neuron as n
 
 
 class Layer:
-    """Class which represents one layer of a neuronal network."""
+    """Class which represents one layer of a neural network."""
 
     def __init__(self, weights,
                  activation_functions,

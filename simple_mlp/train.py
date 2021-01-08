@@ -36,6 +36,14 @@ class Train:
         """Set the network for the training."""
         self.__network = network
 
+    def get_dataset(self):
+        """Return the set dataset."""
+        if self.__dataset:
+            return self.__dataset
+        else:
+            print("The dataset is not set.")
+            return None
+
     def set_dataset(self, dataset):
         """Set the dataset for the training."""
         self.__dataset = dataset

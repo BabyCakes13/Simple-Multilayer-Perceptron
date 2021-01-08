@@ -33,6 +33,8 @@ if __name__ == "__main__":
     activation_functions_derivatives = [sigmoid_derivative] * layer_count
 
     train.generate_xor_dataset(input_count)
+    print(train.get_dataset())
+
     train.setup_network(input_count,
                         network_layout,
                         activation_functions,

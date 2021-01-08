@@ -29,7 +29,7 @@ class Neuron:
         """
         Forward propagate.
 
-        The function forward propagates through the neuronal network by
+        The function forward propagates through the neural network by
         constructing the sum between each input and its weight, adding the bias
         at the end. The result represents the output for this neuron which will
         be paseed to the next layer.
