@@ -215,7 +215,15 @@ def squared_mean_error(self, expected_output):
 
 I have tried to keep the implementation as simple and as structured as possible. Of course, there is room for improvement. For now I have the following project structure:
 
+![Simple Multilayer Perceptron project structure.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/simple_mlp_folder_structure.png)
 
+### Network
+
+### Layer
+
+### Neuron
+
+### Train
 
 ## Experiments
 
