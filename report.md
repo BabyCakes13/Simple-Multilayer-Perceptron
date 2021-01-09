@@ -320,6 +320,30 @@ At this point I actually thought I have implemented something completely wrong s
 
 ![Experiment 2 - weights and bias after training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_11_diagram_after.png)
 
+### Experiment 3
+
+| Learning Rate | Acceptable Mean Squared Error | Network Layout | Activation function |
+| ------------- | ----------------------------- | -------------- | ------------------- |
+| 0.5    | 0.001                         | [2, 1]         | Sigmoid |
+
+#### Result
+
+| Input | Expected output | Generated output | Iterations |
+|----- | --------------- | ----------------| ----------|
+| (0, 0) | 0 | [0.028281311827909387] | 4435 |
+| (0, 1) | 1 | [0.9670412803392583]  | 4435 |
+| (1, 0) | 1 | [0.9670108883329275] | 4435 |
+| (1, 1) | 0 | [0.03193226003479527] | 4435 |
+
+#### Squared mean errors: 0.0009999758016979844
+
+#### Weights and bias before adjust
+
+![Experiment 2 - weights and bias before training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_12_diagram_before.png)
+#### Weights and bias after adjust
+
+![Experiment 2 - weights and bias after training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_12_diagram_after.png)
+
 ## Bibgliography
 
 2. https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250
