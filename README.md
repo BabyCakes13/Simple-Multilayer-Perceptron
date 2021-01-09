@@ -11,7 +11,7 @@ Of course, one can have multiple hidden layers. For my example, I have created a
 
 ![Structure of the network](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/neural_network_structure.png)
 
-One neuron has the following structure:
+One neuron has the following structure [1]:
 
 ![Structure of one neuron](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/structure-of-a-single-node-of-an-NN-a-neuron.ppm.png)
 ## Idea
@@ -211,6 +211,12 @@ def squared_mean_error(self, expected_output):
         squared_mean_error = squared_mean_error / len(self.__neurons)
         return squared_mean_error
 ```
+## Implementation Details
+
+I have tried to keep the implementation as simple and as structured as possible. Of course, there is room for improvement. For now I have the following project structure:
+
+
+
 ## Experiments
 
 After I have put my network on place, I have started experimenting with different learning rates, network structures and activation functions. 
@@ -345,7 +351,7 @@ At this point I actually thought I have implemented something completely wrong s
 ![Experiment 2 - weights and bias after training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_12_diagram_after.png)
 
 ## Bibgliography
-
+1. https://stackoverflow.com/questions/26058022/neural-network-activation-function-vs-transfer-function/26059347
 2. https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250
 3. https://en.wikipedia.org/wiki/Feedforward_neural_network
 4. https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
