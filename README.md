@@ -1,5 +1,23 @@
 # Simple Multilayer Perceptron with Backpropagation trained for XOR
 
+## How to run?
+
+### Tweaking parameters
+
+In __main__.py, the following parameters can be tweaked:
+* input_count
+* network_layout
+* activation_functions
+* activation_functions_derivatives
+* learning rate
+* minimum required error
+
+## Running the project
+
+```bash
+% python -m simple_mlp
+```
+
 
 ## Introduction
 First of all, what is a multilayer perceptron? In a few words, a MLP is a type of feedforward artificial neural network [1]. This network consists of at least three layers of neurons:
