@@ -9,7 +9,7 @@ In __main__.py, the following parameters can be tweaked:
 * network_layout
 * activation_functions
 * activation_functions_derivatives
-* learning rate
+* learning_rate
 * acceptable_squared_mean_error
 
 ## Running the project
