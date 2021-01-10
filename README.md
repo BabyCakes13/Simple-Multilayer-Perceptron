@@ -10,7 +10,7 @@ In __main__.py, the following parameters can be tweaked:
 * activation_functions
 * activation_functions_derivatives
 * learning rate
-* minimum required error
+* acceptable_squared_mean_error
 
 ## Running the project
 
