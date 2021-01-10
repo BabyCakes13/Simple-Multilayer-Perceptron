@@ -219,11 +219,23 @@ I have tried to keep the implementation as simple and as structured as possible.
 
 ### Network
 
+![Network class structure.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/network_class.png)
+
 ### Layer
+
+![Layer class structure.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/layer_class.png)
 
 ### Neuron
 
+![Neuron class structure.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/neuron_class.png)
+
 ### Train
+
+![Train class structure.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/train_class.png)
+
+### Relationships
+
+![Classes relationship.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/classes_architecture_simple.png)
 
 ## Experiments
 
@@ -285,6 +297,7 @@ After generating the dataset and setting up the network, we still have to choose
 
 ### Experiment 1
 
+
 | Learning Rate | Acceptable Mean Squared Error | Network Layout | Activation function |
 | ------------- | ----------------------------- | -------------- | ------------------- |
 | 0.001		| 0.001				| [2, 1]	 | Sigmoid |
@@ -312,6 +325,7 @@ At this point I actually thought I have implemented something completely wrong s
 
 ### Experiment 2
 
+
 | Learning Rate | Acceptable Mean Squared Error | Network Layout | Activation function |
 | ------------- | ----------------------------- | -------------- | ------------------- |
 | 0.05    | 0.001                         | [2, 1]         | Sigmoid |
@@ -336,6 +350,7 @@ At this point I actually thought I have implemented something completely wrong s
 
 ### Experiment 3
 
+
 | Learning Rate | Acceptable Mean Squared Error | Network Layout | Activation function |
 | ------------- | ----------------------------- | -------------- | ------------------- |
 | 0.5    | 0.001                         | [2, 1]         | Sigmoid |
@@ -353,10 +368,40 @@ At this point I actually thought I have implemented something completely wrong s
 
 #### Weights and bias before adjust
 
-![Experiment 2 - weights and bias before training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_12_diagram_before.png)
+![Experiment 3 - weights and bias before training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_12_diagram_before.png)
 #### Weights and bias after adjust
 
-![Experiment 2 - weights and bias after training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_12_diagram_after.png)
+![Experiment 3 - weights and bias after training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_12_diagram_after.png)
+
+### Experiment 4
+
+
+| Learning Rate | Acceptable Mean Squared Error | Network Layout | Activation function |
+| ------------- | ----------------------------- | -------------- | ------------------- |
+| 0.2    | 0.0001                         | [2, 1]         | Sigmoid |
+
+#### Result
+
+| Input | Expected output | Generated output | Iterations |
+|----- | --------------- | ----------------| ----------|
+| (0, 0) | 0 | [0.009215194470002675] | 69454 |
+| (0, 1) | 1 | [0.9895387006570503]  | 69454 |
+| (1, 0) | 1 | [0.9895390356793257] | 69454 |
+| (1, 1) | 0 | [0.009807392986486852] | 69454 |
+
+#### Squared mean errors: 9.999942829450311e-05
+
+#### Weights and bias before adjust
+
+![Experiment 4 - weights and bias before training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_13_diagram_before.png)
+#### Weights and bias after adjust
+
+![Experiment 4 - weights and bias after training.](https://github.com/BabyCakes13/Simple-Multilayer-Perceptron/blob/master/pics/Experiments_13_diagram_after.png)
+
+## Conclusions
+
+The experience of building a neural network from grounds up, training it and getting to experiment with various little changes is a really fun and satisfying one. There is room for more improvements, as well as from the implementation point of view (such as treating the input layer as a layer of neurons rather than an array), as well as finding better structures for even more accuracy. 
+Some interesting and valuable material which I found is linked in the Bibliography at [10], [11], 12[], [13] and [14], besides the already linked ones. 
 
 ## Bibgliography
 1. https://stackoverflow.com/questions/26058022/neural-network-activation-function-vs-transfer-function/26059347
@@ -368,3 +413,8 @@ At this point I actually thought I have implemented something completely wrong s
 7. https://medium.com/@neuralnets/delta-learning-rule-gradient-descent-neural-networks-f880c168a804
 8. https://www.youtube.com/watch?v=Ilg3gGewQ5U
 9. Russell, Ingrid. "The Delta Rule". University of Hartford. Archived from the original on 4 March 2016. Retrieved 5 November 2012.
+10. https://www.youtube.com/watch?v=aircAruvnKk&t=2s (the whole series)
+11. https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-python/
+12. https://becominghuman.ai/neural-network-xor-application-and-fundamentals-6b1d539941ed
+13. https://towardsdatascience.com/understanding-the-mathematics-behind-gradient-descent-dde5dc9be06e
+14. https://towardsdatascience.com/how-do-artificial-neural-networks-learn-773e46399fc7
